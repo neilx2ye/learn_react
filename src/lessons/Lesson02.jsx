@@ -34,17 +34,17 @@ function NameCard(props) {
   return (
     <div className="card">
       {/* TODO 1：把名字显示出来。提示：props.??? 把它放进花括号里 */}
-      <h2>（这里显示名字）</h2>
+      <h2> {props.name} </h2>
 
       {/* TODO 2：把职位显示出来 */}
-      <p className="muted">（这里显示职位）</p>
+      <p className="muted"> {props.role} </p>
 
       {/* TODO 3：把年限显示出来，输出成「从业 3 年」这种格式 */}
-      <p className="small">（这里显示年限）</p>
+      <p className="small">从业 {props.years} 年</p>
 
       <div className="row">
         {/* 这里先不动。第 3 课学会用数组渲染，再回来改它 */}
-        <span className="tag">JavaScript</span>
+        <span className="tag">{props.skills.join("/")}</span>
       </div>
     </div>
   )
@@ -66,9 +66,9 @@ export default function Lesson02() {
           · 属性名要和你组件里正在用的 key 对上
           · 第 3 个属性是数字，想清楚该用引号还是花括号 */}
 
-      <NameCard />
-      <NameCard />
-      <NameCard />
+      <NameCard name = {PEOPLE[0].name} role = {PEOPLE[0].role} years={PEOPLE[0].years} skills={['JavaScript',"CSS"]}/>
+      <NameCard name = {PEOPLE[1].name} role = {PEOPLE[1].role} years={PEOPLE[1].years} skills={['JavaScript',"CSS"]}/>
+      <NameCard name = {PEOPLE[2].name} role = {PEOPLE[2].role} years={PEOPLE[2].years} skills={['JavaScript',"CSS"]}/>
 
       {/* ============================================================
           ✅ 自查（4 条全过才算过关）：
