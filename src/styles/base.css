@@ -1,0 +1,249 @@
+/* ============================================================================
+   设计变量 + 通用零件
+   课程页面和「预览」小窗口共用这一份 —— 你在课程里看到的 class 名，
+   在自己的示例代码里可以直接用。
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #f4f6f9;
+  --surface: #ffffff;
+  --surface-2: #eef1f5;
+  --text: #171a1f;
+  --muted: #6b7480;
+  --border: #e3e7ec;
+  --accent: #2f6feb;
+  --accent-soft: #eaf1ff;
+  --ok: #14855f;
+  --ok-soft: #e6f6ef;
+  --warn: #a1621a;
+  --warn-soft: #fffbeb;
+  --warn-border: #fde68a;
+  --err: #c2352b;
+  --err-soft: #fdecea;
+  --radius: 12px;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New", monospace;
+  --fs: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1216;
+    --surface: #171b21;
+    --surface-2: #202631;
+    --text: #e8ebef;
+    --muted: #98a2ad;
+    --border: #2a3138;
+    --accent: #6ea0ff;
+    --accent-soft: #1b2740;
+    --ok: #4ecfa0;
+    --ok-soft: #12291f;
+    --warn: #f0c274;
+    --warn-soft: #2a2314;
+    --warn-border: #4a3c1c;
+    --err: #ff8b80;
+    --err-soft: #2d1a19;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: var(--fs);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+h1 {
+  font-size: 1.4em;
+  line-height: 1.4;
+  margin: 0 0 6px;
+}
+
+h2 {
+  font-size: 1.08em;
+  margin: 0 0 8px;
+}
+
+h3 {
+  font-size: 1em;
+  margin: 0 0 6px;
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+ul,
+ol {
+  margin: 0 0 12px;
+  padding-left: 1.4em;
+}
+
+li {
+  margin-bottom: 4px;
+}
+
+strong {
+  font-weight: 650;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.88em;
+  background: var(--surface-2);
+  border-radius: 5px;
+  padding: 1px 5px;
+  word-break: break-word;
+}
+
+/* ---------- 通用零件 ---------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin-bottom: 12px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tag {
+  display: inline-block;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 2px 12px;
+  font-size: 0.82em;
+}
+
+.chip {
+  display: inline-block;
+  background: var(--surface-2);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.78em;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: 0.85em;
+}
+
+.big {
+  font-size: 1.7em;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.good {
+  color: var(--ok);
+}
+
+.bad {
+  color: var(--err);
+}
+
+.hint {
+  background: var(--warn-soft);
+  border: 1px solid var(--warn-border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+}
+
+.empty {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.btn {
+  padding: 9px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.95em;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:hover {
+  border-color: var(--muted);
+}
+
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.field {
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 1em;
+  min-width: 0;
+}
+
+.field:focus {
+  outline: 2px solid var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  flex: none;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list-item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.list-item:last-child {
+  border-bottom: 0;
+}
