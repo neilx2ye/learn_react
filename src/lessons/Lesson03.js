@@ -245,7 +245,7 @@ export default function App() {
     {
       type: 'code',
       title: '你写出来的答案（存档）',
-      code: `// 你当时写的，代码一字没改
+      code: `// 你当时写的（收尾后的版本），长行折了一下方便手机上看
 
 // ① 技能：一个技能一个标签
 {props.skills.map((skill) => (
@@ -258,7 +258,6 @@ export default function App() {
 共 {PEOPLE.length} 名成员
 
 // ③ 只留满 3 年的人：filter + map
-//    你当时一口气写完的，左右滑动看全
 {PEOPLE.filter((person) => person.years >= 3).map((person) => (
   <NameCard
     key={person.id}
@@ -267,7 +266,28 @@ export default function App() {
     years={person.years}
     skills={person.skills}
   />
-))}`,
+))}
+
+// ④ 加分题：筛完一个不剩时的兜底（你后面补上的）
+//    为了看到空状态，条件临时改成 years >= 13 —— 故意制造空结果，好习惯
+let filtered = PEOPLE.filter((person) => person.years >= 13)
+
+{filtered.length > 0
+  ? filtered.map((person) => (
+      <NameCard
+        key={person.id}
+        name={person.name}
+        role={person.role}
+        years={person.years}
+        skills={person.skills}
+      />
+    ))
+  : <p className="empty">没有符合条件的人</p>}
+
+// ⑤ 第二个加分题你起了个头，还是个空壳，留着下次补
+function SkillList(props) {
+
+}`,
     },
     {
       type: 'code',
@@ -310,8 +330,9 @@ export default function App() {
       type: 'bonus',
       title: '加分题（做完说明你真的懂了）',
       md: [
-        '- 筛完一个人都不剩的时候，页面会空一大片 —— 给个兜底提示，比如 `<p className="empty">没有符合条件的人</p>`。**当心一种写法**：`seniors.length && <p>...</p>`，空数组时 `0` 会被 React 原样画成一个 **0** 在屏幕上。写清楚就好：`seniors.length === 0 ? ... : ...`。',
-        '- 把技能那一块抽成独立的小组件 `SkillList`（它自己内部 `props.skills.map(...)`），让卡片组件里再套一个组件。',
+        '- 筛完一个人都不剩的时候，页面会空一大片 —— 给个兜底提示。**你已经做了**，见上面存档里的 ④：`filtered.length > 0 ? ... : ...`。',
+        '  顺便给自己记一条：**当心** `seniors.length && <p>...</p>` 这种写法，空数组时 `0` 会被 React 原样画成一个 **0** 在屏幕上。',
+        '- 把技能那一块抽成独立的小组件 `SkillList`（它自己内部 `props.skills.map(...)`），让卡片组件里再套一个组件 —— 你在存档里已经起了头，是个空壳，把它填完整。',
       ],
     },
   ],
